@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Festa do Nathan!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤠</text></svg>">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-image: url("img/andy-wallpaper.jpg");
+            background-repeat: repeat;
+            background-size: 500px;
+
+        }
+
+        .card {
+
+            width: 100%;
+            max-width: 760px;
+            background: #FFD84D;
+            border: 2px solid #0A55C6;
+            border-radius: 20px;
+            padding: 45px 35px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, .25);
+            animation: aparecer .45s ease;
+
+        }
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        .title {
+
+            font-size: 50px;
+            font-weight: 800;
+            color: #0A55C6;
+            text-shadow: 1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .message {
+            color: #0A55C6;
+            font-size: 26px;
+            line-height: 1.9;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .message strong {
+            font-weight: 800;
+        }
+
+        .guest-list {
+            width: 100%;
+            align-items: center;
+            max-width: 100%;
+            margin-top: 45px;
+            margin-bottom: 45px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .guest {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 14px;
+            white-space: nowrap;
+            text-align: left;
+            font-size: 38px;
+            font-weight: 800;
+            color: #0A55C6;
+            text-shadow: 1px 1px 0 #FFFFFF, 2px 2px 0 #FFFFFF;
+
+        }
+
+        .guest span {
+            display: flex;
+            width: 42px;
+            text-align: center;
+            margin-top: -6px;
+        }
+
+        .invalid {
+
+            color: #0A55C6;
+
+            font-size: 26px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+        }
+
+        @media(max-width:700px) {
+
+            body {
+
+                background-size: 320px;
+
+                padding: 15px;
+
+            }
+
+            .card {
+
+                padding: 35px 22px;
+
+            }
+
+            .title {
+
+                font-size: 34px;
+
+            }
+
+            .message {
+
+                font-size: 20px;
+
+                line-height: 1.8;
+
+            }
+
+            .guest {
+
+                font-size: 28px;
+
+            }
+
+            .guest span {
+
+                width: 30px;
+
+            }
+
+            .footer {
+
+                font-size: 20px;
+
+            }
+
+        }
+
+        .frase {
+            margin-top: 35px;
+            font-size: 18px;
+            font-style: italic;
+            color: #0a55c6bc;
+            font-weight: 700;
+            text-transform: uppercase;
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="title">
+
+            <span style="margin-top: -6px;">🎉</span> BEM-VINDOS!
+
+        </div>
+
+        <div id="mensagem"></div>
+
+        <p class="frase">AO INFINITO... E ALÉM! 🚀</p>
+
+    </div>
+
+    <script>
+
+        const convidados = {
+
+            "A7F9K2M1": [
+                "VOVÓ JOELMA",
+                "VOVÔ EDILSON",
+                "TIA BEL",
+                "TIA MARI"
+            ],
+
+            "Q3X8L5N7": [
+                "JACY",
+                "LUIZ FERNANDO",
+                "JOÃO DAVI",
+                "DENNIS"
+            ],
+
+            "M9P2R6T4": [
+                "EDMILTON",
+                "SUZY",
+                "SARA"
+            ],
+
+            "H4C8V1B7": [
+                "JUNIA",
+                "JOÃO"
+            ],
+
+            "K6D2W9F3": [
+                "FÁBIO",
+                "GLEYCE",
+                "HENRIQUE"
+            ],
+
+            "Z8N5J4Q2": [
+                "VOVÓ ANGÉLICA",
+                "VOVÔ JAILSON"
+            ],
+
+            "P1T7Y3L8": [
+                "TIO ADRYANE",
+                "TIO JOAB"
+            ],
+
+            "R4M9X6A1": [
+                "BISA ROSA",
+                "BISO DÉ",
+                "TIA ADRIANA",
+                "ARTHUR"
+            ],
+
+            "F2K8C5U9": [
+                "RÓGÉRIO",
+                "PAULA",
+                "DAVI",
+                "DANIEL"
+            ],
+
+            "J7H3N6P4": [
+                "EDMILSON",
+                "GERLANE",
+                "FELIPE",
+                "LUCAS"
+            ],
+
+            "W5L1R8G2": [
+                "ALENDRE",
+                "CIBELLY"
+            ],
+
+            "N3Q7D9K6": [
+                "ALINE",
+                "ALEX",
+                "MAYA",
+                "CELINA"
+            ],
+
+            "B8F2T4Y7": [
+                "VILMA",
+                "VILMINHA",
+                "VITÓRIA",
+                "ANTONY"
+            ],
+
+            "C6P1X5M8": [
+                "VÂNIA",
+                "LAURA",
+                "LEO",
+                "SOCORRO",
+                "TANINHO"
+            ],
+
+            "L9V4J2H5": [
+                "KÉSSIA",
+                "CARMINHA",
+                "LUNA"
+            ],
+
+            "T7A3N8Q1": [
+                "MADALENE",
+                "DEYVISON"
+            ],
+
+            "G5R9W2K4": [
+                "DENISE",
+                "ÊNIO"
+            ],
+
+            "X2M6F8P3": [
+                "DEYSE"
+            ],
+
+            "D4Y7L1C9": [
+                "RENATA",
+                "ELVIS"
+            ],
+
+            "U8H5Q3T6": [
+                "RITA"
+            ],
+
+            "E1K9V7N2": [
+                "MEIRE",
+                "JORGE",
+                "CAMILLA",
+                "CALEBE"
+            ],
+
+            "S6B4P8X1": [
+                "JERLANE",
+                "AUGUSTO",
+                "LAURA"
+            ],
+
+            "Y3F7M5R9": [
+                "LÍVIA",
+                "CÉLIO",
+                "MARCOS",
+                "LAÍS"
+            ],
+
+            "K8T2D6W4": [
+                "PRISCILA",
+                "MESSIAS",
+                "NATANAEL"
+            ],
+
+            "V5N1H9A7": [
+                "IHAYNA"
+            ],
+
+            "P9C4L7F2": [
+                "FABIANA",
+                "RAFAEL",
+                "JOSÉ FELIPE"
+            ],
+
+            "R2X8J5M6": [
+                "AMANDA",
+                "ARTHUR"
+            ],
+
+            "H7Q3K9T1": [
+                "IULLY",
+                "JOÃO",
+                "LAURA"
+            ],
+
+            "M4W6P2Y8": [
+                "ISA",
+                "JOÃO",
+                "ITALO",
+                "GUILHERME",
+                "ISADORA"
+            ],
+
+            "N8D1V5C7": [
+                "QUECIA",
+                "GERALDO",
+                "KAUAN"
+            ],
+
+            "F6L9A3X2": [
+                "DENIS",
+                "ADRIANA",
+                "DANIEL",
+                "DAVI"
+            ],
+
+            "J1R5U8K4": [
+                "SUZETE",
+                "ANDRÉ"
+            ],
+
+            "Q7T2H6P9": [
+                "VERÔNICA"
+            ]
+
+        };
+
+        const codigo = location.hash.replace("#", "");
+
+        const lista = convidados[codigo];
+
+        if (lista) {
+
+            const convidadosHTML = lista
+                .map(nome => `
+                    <div class="guest">
+                        <span>🤠</span>
+                        <div>${nome}</div>
+                    </div>
+                `)
+                .join("");
+
+            document.getElementById("mensagem").innerHTML = `
+
+                <div class="message">
+                    HOJE O <strong>NATHAN</strong> COMEMORA SEU 1º ANIVERSÁRIO E ESTA FESTA SÓ ESTÁ COMPLETA COM A PRESENÇA DE VOCÊS!
+                </div>
+
+                <div class="guest-list">
+
+                    ${convidadosHTML}
+
+                </div>
+
+            `;
+
+        } else {
+
+            document.getElementById("mensagem").innerHTML = `
+
+                <div class="invalid">
+
+                    🤠 OPS! ESTE QR CODE NÃO É VÁLIDO. 🚀
+
+                </div>
+
+            `;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
